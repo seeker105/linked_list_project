@@ -14,7 +14,6 @@ class JungleBeat
     else
       append(data)
     end
-    return @head
   end
 
   def vailidate_data(data)
@@ -72,7 +71,6 @@ class JungleBeat
         temp = temp.pointer
       end
     end
-
     #at this point temp points to the tail, even if it's a one element array meaning
     #head and tail are the same.
     #Append each new item.
@@ -126,9 +124,24 @@ class JungleBeat
       position += 1
       current_element = current_element.pointer
     end
+    #at this point current_element should hold the element at the start index
+    #begin constructing the return string
+    index_counter = 1
+    output_string = current_element.value
+    while current_element != nil and index_counter < number_of_items
+      current_element = current_element.pointer
+      output_string += " " + current_element.value
+      index_counter += 1
+    end
+    return output_string
+  end
 
     def pop(number_of_items=0)
-      #if it's and empty string return nil
+      #if number_of_items requested is 0 or less return empty string
+      if number_of_items <= 0
+        return ""
+      end
+      #if list is empty return nil
       if empty?
         return nil
       end
@@ -151,46 +164,19 @@ class JungleBeat
         last_element = last_element.pointer
         index_counter += 1
       end
-      # binding.pry
+
       #now last_element holds the element before the ones to be popped
       result_string = ""
-      # binding.pry
       temp = last_element.pointer
       result_string = temp.value
-      # binding.pry
       while temp.pointer != nil
         temp = temp.pointer
         result_string += " " + temp.value
       end
-      # binding.pry
       last_element.pointer = nil
-      # binding.pry
       return result_string
     end
 
-    def include?(value)
-      current_element = @head
-      while current_element != nil
-        if current_element.value == value
-          return true
-        else
-          current_element = current_element.pointer
-        end
-      end
-      #if it exits the loop without returning true it was not found
-      return false
-    end
-    #at this point current_element should hold the element at the start index
-    #begin constructing the return string
-    index_counter = 1
-    output_string = current_element.value
-    while current_element != nil and index_counter < number_of_items
-      current_element = current_element.pointer
-      output_string += " " + current_element.value
-      index_counter += 1
-    end
-    return output_string
-  end
 
 
   def count
@@ -234,5 +220,17 @@ class JungleBeat
     return output_string
   end
 
+  def include?(value)
+    current_element = @head
+    while current_element != nil
+      if current_element.value == value
+        return true
+      else
+        current_element = current_element.pointer
+      end
+    end
+    #if it exits the loop without returning true it was not found
+    return false
+  end
 
 end

@@ -17,6 +17,12 @@ class JungleBeatTest < Minitest::Test
     assert list.empty?
   end
 
+  def test_does_an_empty_list_include_anything?
+    list = JungleBeat.new
+    refute list.include?("beep")
+
+  end
+
   def test_a_list_can_be_created_with_data
     list = JungleBeat.new("bop deep boop dop clap clop")
     assert_equal 6, list.count
