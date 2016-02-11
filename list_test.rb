@@ -80,8 +80,8 @@ class ListTest < Minitest::Test
     list = List.new("bop deep boop dop")
     assert_equal "bop deep boop dop", list.all
 
-    list.append("frank tom henry")
-    assert_equal "bop deep boop dop frank tom henry", list.all
+    list.append("tee top la")
+    assert_equal "bop deep boop dop tee top la", list.all
   end
 
   def test_prepend_inserts_the_values_at_the_start
@@ -89,8 +89,8 @@ class ListTest < Minitest::Test
     list.prepend("dop bop")
     assert_equal "dop bop", list.all
 
-    list.prepend("john henry")
-    assert_equal "john henry dop bop", list.all
+    list.prepend("na la")
+    assert_equal "na la dop bop", list.all
   end
 
   def test_prepend_returns_the_number_of_items_prepended
@@ -98,20 +98,20 @@ class ListTest < Minitest::Test
     item_count = list.prepend("dop bop")
     assert_equal 2, item_count
 
-    item_count = list.prepend("john henry smith")
+    item_count = list.prepend("na la oop")
     assert_equal 3, item_count
   end
 
   def test_insert_a_single_item_at_index_in_a_non_empty_list
     list = List.new("dop bop whoop doop")
-    list.insert(1, "fred")
-    assert_equal "dop fred bop whoop doop", list.all
+    list.insert(1, "wop")
+    assert_equal "dop wop bop whoop doop", list.all
   end
 
   def test_insert_multiple_items_at_index_in_a_non_empty_list
     list = List.new("dop bop whoop doop")
-    list.insert(1, "fred jones")
-    assert_equal "dop fred jones bop whoop doop", list.all
+    list.insert(1, "wop boon")
+    assert_equal "dop wop boon bop whoop doop", list.all
   end
 
   def test_return_the_item_at_a_given_index
@@ -120,8 +120,8 @@ class ListTest < Minitest::Test
   end
 
   def test_return_multiple_items_starting_at_a_given_index
-    list = List.new("dop bop whoop doop henry smith susie frank")
-    assert_equal "doop henry smith susie", list.find(3,4)
+    list = List.new("dop bop whoop doop la oop ding tee")
+    assert_equal "doop la oop ding", list.find(3,4)
   end
 
   def test_include_returns_true_if_the_data_was_found
@@ -129,12 +129,12 @@ class ListTest < Minitest::Test
     list.prepend("dop bop")
     assert list.include?("dop")
 
-    refute list.include?("henry")
-    list.append("john henry smith")
-    assert list.include?("henry")
+    refute list.include?("la")
+    list.append("na la oop")
+    assert list.include?("la")
 
-    list.insert(1, "whosat")
-    assert list.include?("whosat")
+    list.insert(1, "dah")
+    assert list.include?("dah")
   end
 
 end
